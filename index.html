@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<head></head>
+
+<body>
+    <div>
+        <pre>
+tm1 = int(input("Enter First Test Marks"))
+tm2 = int(input("Enter Second Test Marks"))
+tm3 = int(input("Enter Third Test Marks"))
+if tm1>tm2 and tm1>tm3 : 
+ if tm2>tm3: 
+	 avg = (tm1+tm2)/2 
+ else:
+ 	avg = (tm1+tm3)/2 
+elif tm2>tm1 and tm2>tm3: 
+ if tm1>tm3: 
+ 	avg = (tm1+tm2)/2 
+ else:
+ 	avg = (tm2+tm3)/2 
+else: 
+ if tm1>tm2: 
+ 	avg = (tm3+tm1)/2 
+ else:
+	 avg = (tm3+tm2)/2 
+print("The average of two best test marks out of three test marks = ",avg)
+        </pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+        <div>
+            <pre>
+Enter First Test Marks 85
+Enter Second Test Marks 52
+Enter Third Test Marks 68
+The average of two best test marks out of three test marks = 76.5
+<p>------------------------------------------------------------------------------------------------------</p>
+</pre>
+        </div>
+    </div>
+
+
+    <div>
+        <pre>
+x = int(input("Enter a number: "))
+c0, c1, c2, c3, c4, c5, c6, c7, c8, c9 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+num = x
+rev = 0
+
+while x > 0:
+    r = x % 10
+    rev = rev * 10 + r
+    x = x // 10
+    if r == 0:
+        c0 += 1
+    elif r == 1:
+        c1 += 1
+    elif r == 2:
+        c2 += 1
+    elif r == 3:
+        c3 += 1
+    elif r == 4:
+        c4 += 1
+    elif r == 5:
+        c5 += 1
+    elif r == 6:
+        c6 += 1
+    elif r == 7:
+        c7 += 1
+    elif r == 8:
+        c8 += 1
+    elif r == 9:
+        c9 += 1
+
+if rev == num:
+    print("The Number {0} is a palindrome".format(num))
+else:
+    print("The Number {0} is not a palindrome".format(num))
+
+print("The occurrence of 0 is {0}, 1 is {1}, 2 is {2}, 3 is {3}, 4 is {4}, 5 is {5}, 6 is {6}, 7 is {7}, 8 is {8}, 9 is {9}".format(c0, c1, c2, c3, c4, c5, c6, c7, c8, c9))
+
+</pre>
+    </div>
+    <p>------------------------------------------------------------------------------------------------------</p>
+    <div>
+        <pre>
+def fn(n):
+ if n == 1: 
+ 	return 0
+ elif n == 2: 
+	 return 1
+ else:
+ 	return fn(n-1) + fn(n-2)
+num = int(input("Enter a number : ")) 
+if num > 0:
+ print("fn(", num, ") = ",fn(num) , sep ="")
+else:
+ print("Error in input")
+ </pre>
+
+        <pre>
+    OUTPUT: 
+1. Enter a number : 5
+ fn(5) = 3
+2. Enter a number : -4
+Error in input
+ </pre>
+    </div>
+    <p>------------------------------------------------------------------------------------------------------</p>
+
+    <div>
+        <pre>
+def BinToDec(x):
+    dec = 0
+    i = 0
+    while x > 0:
+        r = x % 10
+        if r != 0 and r != 1:
+            print("Enter a valid Binary number")
+            return 0
+        else:
+            dec = dec + r * 2**i
+            x = x // 10
+            i += 1
+    return dec
+
+def OctaToHexa(n):
+    num = n
+    dec = 0
+    base = 1
+    temp = num
+    while temp:
+        r = temp % 10
+        temp = temp // 10
+        dec += r * base
+        base = base * 8
+
+    result = ''
+    while dec != 0:
+        temp = 0
+        temp = dec % 16
+        if temp < 10:
+            result = str(temp) + result
+        else:
+            result = chr(temp + 55) + result
+        dec = dec // 16
+    return result
+
+x = int(input("Enter a Binary number: "))
+result = BinToDec(x)
+if result:
+    print("The Decimal equivalent of {0} is {1}".format(x, result))
+
+y = int(input("Enter an Octal number: "))
+result = OctaToHexa(y)
+if result:
+    print("The Hexadecimal equivalent of {0} is {1}".format(y, result))
+</pre>
+
+        <pre>
+    OUTPUT: 
+Enter a Binary number 1111
+The Decimal equivalent of 1111 is 15
+Enter a Octal number 146523
+CD53 
+The Hexa Decimal equivalent of 146523 is CD53
+</pre>
+    </div>
+    <p>------------------------------------------------------------------------------------------------------</p>
+
+    <div>
+        <pre>
+x = input("Enter a sentence") 
+y = x
+print("There are",len(x.split())," words in the sentence") 
+digits,upper,lower=0,0,0
+for i in x: 
+ if i.isdigit(): 
+ 	digits+=1
+ elif i.isupper(): 
+ 	upper+=1
+ elif i.islower(): 
+ 	lower+=1
+print("There are {0} digits, {1} upper case characters and {2} lower case characters in the sentence".format(digits,upper,lower))
+</pre>
+
+<pre>
+    OUTPUT: 
+Enter a sentence Rama went to Devaraja market to pick 2 kgs of vegetable 
+There are 11 words in the sentence
+There are 1 digits, 2 upper case characters and 42 lower case characters in the sentence
+
+</pre>
+    </div>
+    <p>------------------------------------------------------------------------------------------------------</p>
+
+    <div>
+        <pre>
+x = input("Enter first String") 
+y = input("Enter second String") 
+x = x.strip() 
+y = y.strip()
+sim=0 
+if len(x)>len(y): 
+ xx = x 
+ yy = y 
+else:
+ xx = y
+ yy = x
+j=0
+for i in yy: 
+ if i==xx[j]: 
+    sim+=1 
+ else:
+    pass 
+ j+=1 
+similarity = (sim/len(xx)) 
+print("The similarity between the two given strings is", similarity)
+</pre>
+    </div>
+    <p>------------------------------------------------------------------------------------------------------</p>
+
+
+<div>
+    <pre>
+def InsertionSort(lst):
+    for i in range(1, len(lst)):
+        key = lst[i]
+        j = i - 1
+        while j >= 0 and lst[j] > key:
+            lst[j + 1] = lst[j]
+            j -= 1
+        lst[j + 1] = key
+    return lst
+
+
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+    left = mergeSort(left)
+    right = mergeSort(right)
+    return merge(left, right)
+
+
+def merge(left, right):
+    merged = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    while i < len(left):
+        merged.append(left[i])
+        i += 1
+    while j < len(right):
+        merged.append(right[j])
+        j += 1
+    return merged
+
+
+lst = []
+n = int(input("Enter the size of the list: "))
+print("Enter", n, "numbers for the list:")
+for i in range(n):
+    lst.append(int(input()))
+
+print("Original list:", lst)
+print("Enter 1 for Insertion Sort, 2 for Merge Sort: ")
+ch = int(input())
+
+if ch == 1:
+    sorted_lst = InsertionSort(lst)
+    print("The sorted array is", sorted_lst)
+elif ch == 2:
+    sorted_lst = mergeSort(lst)
+    print("The sorted array is", sorted_lst)
+else:
+    print("Invalid Choice")
+    </pre>
+</div>
+
+<p>------------------------------------------------------------------------------------------------------</p>
+<div>
+    <pre>
+def roman_to_int(s):
+    rom_val = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    int_val = 0
+    for i in range(len(s)):
+        if i > 0 and rom_val[s[i]] > rom_val[s[i - 1]]:
+            int_val += rom_val[s[i]] - 2 * rom_val[s[i - 1]]
+        else:
+            int_val += rom_val[s[i]]
+    return int_val
+
+x = input("Enter the Roman Number: ")
+print(roman_to_int(x.upper()))
+    </pre>
+
+    <pre>
+Enter the Roman Number XVIII
+18
+Enter the Roman Number MMMDCCCCLXXXVI
+3986
+<p>------------------------------------------------------------------------------------------------------</p>
+    </pre>
+</div>
+<pre>
+import re
+
+def isphonenumber(x):
+    l = len(x)
+    if l != 12:
+        return 0
+    else:
+        for i in range(0, l):
+            if i == 0 or i == 1 or i == 2:
+                if x[i].isdigit() == False:
+                    return 0
+            if i == 4 or i == 5 or i == 6:
+                if x[i].isdigit() == False:
+                    return 0
+            if i == 8 or i == 9 or i == 10:
+                if x[i].isdigit() == False:
+                    return 0
+            if i == 3 or i == 7:
+                if x[i] != '-':
+                    return 0
+    return 1
+
+def REisphonenumber(x):
+    pno = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+    if pno.match(x):
+        return 1
+    else:
+        return 0
+
+phoneNo = input("Enter a phone number of ddd-ddd-dddd format to validate: ")
+ch = int(input("Enter 1 to validate without RE or 2 to validate using RE: "))
+
+if ch == 1:
+    if isphonenumber(phoneNo) == 1:
+        print("You have entered a valid phone number")
+    else:
+        print("You have entered an invalid phone number")
+elif ch == 2:
+    if REisphonenumber(phoneNo) == 1:
+        print("You have entered a valid phone number")
+    else:
+        print("You have entered an invalid phone number")
+
+    </pre>
+    <p>------------------------------------------------------------------------------------------------------</p>
+<div>
+    <pre>
+import re
+
+try:
+    file = open("data.txt")
+    for line in file:
+        line = line.strip()
+        match = re.findall(r"(\d{10})", line)
+        if len(match) > 0:
+            print(match)
+        emails = re.findall("[0-9a-zA-z]+@[0-9a-zA-z]+\.[0-9a-zA-z]+", line)
+        if len(emails) > 0:
+            print(emails)
+except FileNotFoundError as e:
+    print(e)
+
+    <p>------------------------------------------------------------------------------------------------------</p>
+</pre>
+</div>
+</body>
