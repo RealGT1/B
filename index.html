@@ -4,6 +4,356 @@
 
 <body>
     <div>
+<pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+inputFile="data.txt"
+N=int(input("Enter N value: ")) 
+with open(inputFile, 'r') as filedata:
+    linesList=filedata.readlines()
+    print("The following are the first",N,"lines of a text file:")
+    for textline in (linesList[:N]):
+        print(textline, end='')
+word=input("\nEnter word to be searched:")
+k=0
+with open(inputFile,'r') as f:
+    for line in f:
+          words=line.split() 
+          for i in words:
+            if(i==word):
+                k=k+1
+
+print("Occurrences of the word:")
+print(k)
+filedata.close()
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+from zipfile import ZipFile
+import os
+from os.path import basename
+with ZipFile('D:\SampleDirZipFile1.zip', 'w') as zipObj:
+ for foldername,subfolders,filenames in os.walk("D:\SampleDirZipFile\ABC\XYZ"):
+     for filename in filenames:
+         print(foldername,subfolders,filename)
+         filePath = os.path.join(foldername,filename)
+         zipObj.write(filePath, basename(filePath))
+print("Created")
+	
+</pre>
+
+
+	    
+<pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+
+class Shape:
+    area, radius, length, breadth, a, b, c = 0, 0, 0, 0, 0, 0, 0
+
+    def __init__(self, r):
+        self.radius = r
+
+    def __init__(self, l, b):
+        self.length = l
+        self.breadth = b
+
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+class Circle(Shape):
+    def __init__(self, r):
+        super().__init__(r, 0, 0)
+
+    def area(self, r):
+        print("The area of circle is ", 3.14 * r * r)
+
+class Rectangle(Shape):
+    def __init__(self, l, b):
+        super().__init__(0, l, b)
+
+    def area(self, l, b):
+        print("The area of rectangle is ", l * b)
+
+class Triangle(Shape):
+    def __init__(self, a, b, c):
+        super().__init__(a, b, c)
+
+    def area(self, a, b, c):
+        s = (a + b + c) / 2
+        import math
+        print("The area of triangle is ", math.sqrt(s * (s - a) * (s - b) * (s - c)))
+
+print("Enter your choice to compute area of 1.Circle, 2.Rectangle, 3.Triangle")
+ch = int(input())
+if ch == 1:
+    r = int(input("Enter radius of circle"))
+    c = Circle(r)
+    c.area(r)
+elif ch == 2:
+    l = int(input("Enter length of rectangle"))
+    b = int(input("Enter breadth of rectangle"))
+    r = Rectangle(l, b)
+    r.area(l, b)
+elif ch == 3:
+    a = int(input("Enter length of side a of triangle"))
+    b = int(input("Enter length of side b of triangle"))
+    c = int(input("Enter length of side c of triangle"))
+    t = Triangle(a, b, c)
+    t.area(a, b, c)
+else:
+    print("Invalid choice")
+
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+
+class Employee:
+    def __init__(self, name, eid, dept, sal):
+        self.name = name
+        self.eid = eid
+        self.dept = dept
+        self.sal = sal
+
+    def salUpdate(self, eid, dept, updsal):
+        self.sal = updsal
+
+if __name__ == "__main__":
+    emp = []
+    while True:
+        ch = int(input("\n Enter 1.Create Employee\n 2.To display all employees\n 3.To Update an employee salary\n 4.To exit\n"))
+        
+        if ch == 1:
+            n = input("Employee Name: ")
+            i = int(input("Employee ID: "))
+            d = input("Employee Department: ")
+            s = int(input("Employee Salary: "))
+            emp.append(Employee(n, i, d, s))
+            print("Employee details created", len(emp))
+        
+        elif ch == 2:
+            for i in emp:
+                print("\n Employee Name:{0}\n Employee ID:{1}\n Employee Department:{2}\n Employee Salary:{3}".format(i.name, i.eid, i.dept, i.sal))
+        
+        elif ch == 3:
+            upd = 0
+            print("\n Enter the Department and ID of the employee to update salary")
+            empid = int(input("Employee ID: "))
+            dept = input("Employee Department: ")
+            
+            for i in emp:
+                if empid == i.eid and dept == i.dept:
+                    upsal = int(input("\n Enter the updated salary"))
+                    i.salUpdate(empid, dept, upsal)
+                    print("\n Salary updated")
+                    upd = 1
+            
+            if upd == 0:
+                print("\n Employee does not exist")
+        
+        elif ch == 4:
+            break
+        else:
+            print("Invalid choice")
+	
+</pre>
+<pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+
+class strPalindrome:
+    def __init__(self):
+        self.word = ""
+        self.ll = ""
+
+    def check(self, s):
+        self.word = list(s)
+        ll = self.word.copy()
+        self.word.reverse()
+        if ll == self.word:
+            print("\nIt is Palindrome")
+        else:
+            print("\nIt is Not Palindrome")
+
+class noPalindrome(strPalindrome):
+    def __init__(self):
+        super().__init__()
+
+    def check(self, no):
+        super().check(str(no))
+
+if __name__ == '__main__':
+    while True:
+        ch = int(input("Enter 1.For String palindrome 2.For Integer Palindrome 3.To Exit : "))
+        if ch == 1:
+            text = input("Enter a string to check : ")
+            s = strPalindrome()
+            s.check(text)
+        elif ch == 2:
+            text = int(input("Enter a number to check : "))
+            s = noPalindrome()
+            s.check(text)
+            
+        elif ch == 3:
+            break
+        else:
+            print("Invalid choice")
+	
+</pre>
+<pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+
+import requests
+import os
+import bs4
+
+url = 'http://xkcd.com'
+os.makedirs('xkcd', exist_ok=True)
+
+while not url.endswith("#"):
+    print("Downloading the page ... ")
+    res = requests.get(url)
+    res.raise_for_status()
+    
+    try:
+        soup = bs4.BeautifulSoup(res.text, 'lxml')
+    except bs4.FeatureNotFound:
+        soup = bs4.BeautifulSoup(res.text, 'html.parser')
+    
+    comic_element = soup.select('#comic img')
+    
+    if comic_element == []:
+        print("No comic image found!!..")
+    else:
+        comic_image_url = comic_element[0].get('src')
+        print("Downloading the image %s .. " % (comic_image_url))
+        res = requests.get('http:' + comic_image_url)
+        res.raise_for_status()
+        
+        file = open(os.path.join('xkcd', os.path.basename(comic_image_url)), 'wb')
+        
+        for chunk in res.iter_content(10000):
+            file.write(chunk)
+        
+        file.close()
+    
+    prev_link = soup.select('a[rel="prev"]')[0]
+    url = 'http://xkcd.com' + prev_link.get('href')
+
+print("Done")
+
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+
+from openpyxl import Workbook
+from openpyxl.styles import Font
+
+wb = Workbook()
+sheet = wb.active
+sheet.title = "Language"
+wb.create_sheet(title="Capital")
+
+lang = ["Kannada", "Telugu", "Tamil"]
+state = ["Karnataka", "Telangana", "Tamil Nadu"]
+capital = ["Bengaluru", "Hyderabad", "Chennai"]
+code = ['KA', 'TS', 'TN']
+
+sheet.cell(row=1, column=1).value = "State"
+sheet.cell(row=1, column=2).value = "Language"
+sheet.cell(row=1, column=3).value = "Code"
+ft = Font(bold=True)
+
+for row in sheet["A1:C1"]:
+    for cell in row:
+        cell.font = ft
+
+for i in range(2, 5):
+    sheet.cell(row=i, column=1).value = state[i - 2]
+    sheet.cell(row=i, column=2).value = lang[i - 2]
+    sheet.cell(row=i, column=3).value = code[i - 2]
+
+wb.save("D:\demo.xlsx")
+sheet = wb["Capital"]
+sheet.cell(row=1, column=1).value = "State"
+sheet.cell(row=1, column=2).value = "Capital"
+sheet.cell(row=1, column=3).value = "Code"
+ft = Font(bold=True)
+
+for row in sheet["A1:C1"]:
+    for cell in row:
+        cell.font = ft
+
+for i in range(2, 5):
+    sheet.cell(row=i, column=1).value = state[i - 2]
+    sheet.cell(row=i, column=2).value = capital[i - 2]
+    sheet.cell(row=i, column=3).value = code[i - 2]
+
+wb.save("demo.xlsx")
+srchCode = input("Enter state code for finding capital ")
+
+for i in range(2, 5):
+    data = sheet.cell(row=i, column=3).value
+    if data == srchCode:
+        print("Corresponding capital for code", srchCode, "is", sheet.cell(row=i, column=2).value)
+
+sheet = wb["Language"]
+srchCode = input("Enter state code for finding language ")
+
+for i in range(2, 5):
+    data = sheet.cell(row=i, column=3).value
+    if data == srchCode:
+        print("Corresponding language for code", srchCode, "is", sheet.cell(row=i, column=2).value)
+
+wb.close()
+
+</pre>
+<pre>
+<p>------------------------------------------------------------------------------------------------------</p>
+
+import PyPDF2
+def merge_pdf_files(file1, file2, output_file, file1_pages, file2_pages):
+    with open(file1, 'rb') as file1_obj, open(file2, 'rb') as file2_obj:
+        pdf1 = PyPDF2.PdfReader(file1_obj)
+        pdf2 = PyPDF2.PdfReader(file2_obj)
+        pdf_writer = PyPDF2.PdfWriter()
+
+        for page_num in range(file1_pages):
+            page = pdf1.pages[page_num]
+            pdf_writer.add_page(page)
+
+        for page_num in range(file2_pages):
+            page = pdf2.pages[page_num]
+            pdf_writer.add_page(page)
+
+        with open(output_file, 'wb') as output:
+            pdf_writer.write(output)
+
+        print(f"The PDF files '{file1}' and '{file2}' have been merged into '{output_file}'.")
+
+pdf_file1 = 'D:\sample3.pdf'
+pdf_file2 = 'D:\sample4.pdf'
+output_pdf = 'D:\merged.pdf'
+
+file1_pages = int(input("Enter the number of file 1 pages: "))
+file2_pages = int(input("Enter the number of file 2 pages: "))
+
+merge_pdf_files(pdf_file1, pdf_file2, output_pdf, file1_pages, file2_pages)
+
+<p>------------------------------------------------------------------------------------------------------</p>
+
+import requests
+res = requests.get('https://ipinfo.io/')
+data = res.json()
+citydata = data['city']
+print(citydata)
+url = 'https://wttr.in/{}'.format(citydata)
+res = requests.get(url)
+print(res.text)
+
+<p>------------------------------------------------------------------------------------------------------</p>
+</pre>
+
+	    
         <pre>
 tm1 = int(input("Enter First Test Marks"))
 tm2 = int(input("Enter Second Test Marks"))
